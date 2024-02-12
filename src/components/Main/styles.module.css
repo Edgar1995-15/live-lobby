@@ -1,4 +1,6 @@
-.main {
-    height: 100% !important;
-    padding-bottom: 10px !important;
+@media (max-width: 768px) {
+    .main {
+        height: 100% !important;
+        padding-bottom: 10px !important;
+    }
 }
