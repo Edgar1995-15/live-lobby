@@ -50,6 +50,8 @@ export const getVideoSource = (tableId: number) => {
       return `https://static.livevegas.live/table4A.mp4?v=${timestampInMilliseconds}`;
     case 10:
       return `https://static.livevegas.live/table4B.mp4?v=${timestampInMilliseconds}`;
+    case 11:
+      return ``;
     case 13:
       return `https://static.livevegas.live/table8A.mp4?v=${timestampInMilliseconds}`;
     case 14:

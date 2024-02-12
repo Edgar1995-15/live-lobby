@@ -41,18 +41,30 @@
 }
 
 
-.iframe {
-    border: 0;
-    width: 100vw;
-    height: 100vh;
-    /* animation: fadeIn 1.8s ease-in-out 2s forwards; */
+.iframewrapper {
+  border: 0;
+  width: 88vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-size: cover;
+  overflow: hidden;
+}
+
+iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 4s ease-in-out alternate;
 }
 
 @keyframes fadeIn {
   from {
-    opacity: 0;
+      opacity: 0;
   }
   to {
-    opacity: 1;
+      opacity: 1;
   }
 }

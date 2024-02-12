@@ -12,7 +12,7 @@ const GameLoader:React.FC<IGameLoader> = ({table}) => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             setShowLoader(false);
-        }, 3000);
+        }, 2000);
 
         return () => clearTimeout(timeoutId);
     }, []);

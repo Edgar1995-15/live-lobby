@@ -37,7 +37,7 @@ const Main = () => {
             ) : (
                 <div className="w-full h-[100vh] main-bg overflow-auto pb-12">
                     {!isGameOpen && <Header />}
-                    <Content games={playerInfo?.availableGames} setIsGameOpen={setIsGameOpen} />
+                    <Content games={playerInfo?.availableGames} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} />
                     {!isGameOpen && <Footer balance={playerInfo?.balance || 0} currency={playerInfo?.currencyId || ''} />}
                 </div>
             )}

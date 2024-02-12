@@ -7,9 +7,10 @@ import GameLoader from '../LobbyLoader/GameLoader';
 interface IProps {
     table: ITable;
     setIsGameOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+    isGameOpen: boolean;
 }
 
-const TableCard: React.FC<IProps> = ({ table, setIsGameOpen }) => {
+const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
     const [showIframe, setShowIframe] = useState<boolean>(false);
     const [showVideo, setShowVideo] = useState<boolean>(false);
     const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
@@ -19,30 +20,30 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen }) => {
 
     useEffect(() => {
         const options = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.6,
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.6,
         };
-    
+
         const observer = new IntersectionObserver((entries) => {
-          const videoEntry = entries[0];
-          if (videoEntry.isIntersecting) {
-            setIsVideoInViewport(true);
-          } else {
-            setIsVideoInViewport(false);
-          }
+            const videoEntry = entries[0];
+            if (videoEntry.isIntersecting) {
+                setIsVideoInViewport(true);
+            } else {
+                setIsVideoInViewport(false);
+            }
         }, options);
-    
+
         if (videoRef.current) {
-          observer.observe(videoRef.current);
+            observer.observe(videoRef.current);
         }
-    
+
         return () => {
-          if (videoRef.current) {
-            observer.unobserve(videoRef.current);
-          }
+            if (videoRef.current) {
+                observer.unobserve(videoRef.current);
+            }
         };
-      }, [videoRef.current]);
+    }, [videoRef.current]);
 
     useEffect(() => {
         preloadImages();
@@ -52,7 +53,7 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen }) => {
         if (window.innerWidth < 768 && isVideoInViewport) {
             setShowVideo(true)
         }
-    },[isVideoInViewport])
+    }, [isVideoInViewport])
 
     const preloadImages = () => {
         const imageSources = [8, 10, 11, 13, 14, 23, 24, 29, 30, 33, 47, 48, 49, 50, 54].map(tableId => getImageSource(tableId));
@@ -106,6 +107,7 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen }) => {
         <>
             {showIframe && <GameLoader table={table} />}
             <div className={`w-[24vw] h-[12vw] cursor-pointer ${styles.tableCard}`} onClick={handleTableClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={videoRef}>
+                {!isGameOpen && 
                 <div className='relative w-full h-full'>
                     <img src={getImageSource(table.tableId)} className={`w-full h-full object-fill rounded-2xl ${styles.tableImg} ${table.isOccupied ? 'blur-sm' : ''}`} />
                     <video
@@ -132,8 +134,11 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen }) => {
                         </div>
                     </div>
                 </div>
+                }
                 {showIframe && (
-                    <iframe src={table.gameUrl} className={`w-full h-full absolute inset-0 z-10 ${styles.iframe}`} title="Game" />
+                    <div className={styles.iframewrapper} style={{backgroundImage: `url(${getImageSource(table.tableId)})`}}>
+                        <iframe src={table.gameUrl} className={`w-full h-full absolute inset-0 z-10 ${styles.iframe}`} title="Game" />
+                    </div>
                 )}
             </div>
         </>

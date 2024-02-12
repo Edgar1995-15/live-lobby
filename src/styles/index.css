@@ -33,3 +33,16 @@ body,
 .main-bg::-webkit-scrollbar {
   display: none;
 }
+
+.iframe {
+  animation: fadeIn 1.8s ease-in-out 2s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}

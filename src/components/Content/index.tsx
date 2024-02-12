@@ -12,9 +12,10 @@ interface IGame {
 interface IContent {
   games: IGame[];
   setIsGameOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  isGameOpen: boolean;
 }
 
-const Content: React.FC<IContent> = ({ games, setIsGameOpen }) => {
+const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen }) => {
   const [selectedGame, setSelectedGame] = useState<IGame | null>(null);
   const [vipGames, setVipGames] = useState<IGame[]>([]);
   const [otherGames, setOtherGames] = useState<IGame[]>([]);
@@ -55,7 +56,8 @@ const Content: React.FC<IContent> = ({ games, setIsGameOpen }) => {
   };
 
   return (
-    <div className={`w-3/4 m-auto mt-10 mb-28 ${styles.contentWrapper}`}>
+    <div className={`w-3/4 m-auto mt-10 mb-28 min-h-[75%] ${styles.contentWrapper}`}>
+      {!isGameOpen && 
       <div className={`w-full flex justify-center ${styles.tabs}`}>
         <div className={`flex gap-16 ml-4 ${styles.gameList}`}>
           {vipGames.map((game, index) => (
@@ -74,13 +76,14 @@ const Content: React.FC<IContent> = ({ games, setIsGameOpen }) => {
           ))}
         </div>
       </div>
+      }
       <div className={`flex gap-10 flex-wrap place-content-center mt-20 ${styles.cardWrapper}`}>
         {selectedGame && (
           <>
             {selectedGame.tables.map((table, index) => (
               <>
               {table.tableId !== 37 &&
-                <TableCard key={index} table={table} setIsGameOpen={setIsGameOpen} />
+                <TableCard key={index} table={table} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} />
               }
               </>
 
