@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+  scrollbar-width: none;
+  background: #000;
+}
+
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("../fonts/Bahns_chrift/bahnschrift.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("../fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+}
+
+.main-bg {
+  background: radial-gradient(53.8% 51.81% at 50% 50%, #102727 0%, #0C0E0E 100%);
+  scrollbar-width: none;
+}
+
+.main-bg::-webkit-scrollbar {
+  display: none;
+}

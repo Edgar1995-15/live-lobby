@@ -1,0 +1,58 @@
+.tableImg {
+  box-shadow: rgba(9, 152, 152, 0.4) 0px 0px 11.1347px 0px;
+}
+
+.tableVideo {
+  box-shadow: rgba(9, 152, 152, 0.4) 0px 0px 11.1347px 0px;
+}
+
+.tableCard {
+  font-family: "Montserrat-Bold", sans-serif;
+}
+
+.tableStake {
+  text-shadow: rgba(0, 0, 0, 0.6) 0px 3px 6px;
+}
+
+@media (max-width: 1016px) {
+  .stakeAmount img{
+    width: 60px;
+  }
+  .stakeAmount span{
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tableCard {
+    width: 100% !important;
+    height: 160px !important;
+  }
+  .tableStake {
+    font-size: 18px !important;
+  }
+}
+
+@media (max-height: 550px) {
+  .tableCard {
+    width: 85% !important;
+    height: 200px !important;
+  }
+}
+
+
+.iframe {
+    border: 0;
+    width: 100vw;
+    height: 100vh;
+    /* animation: fadeIn 1.8s ease-in-out 2s forwards; */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

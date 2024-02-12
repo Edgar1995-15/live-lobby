@@ -1,0 +1,152 @@
+.loading-container {
+    width: 100%;
+    height: 100vh;
+    background: black;
+}
+.loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .circle-container {
+    width: 550px;
+    height: 550px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .border-bold {
+    position: absolute;
+    background-image: url("../../assets/loader/shadow.svg");
+    animation: rotate 6s linear infinite;
+    background-size: contain;
+    width: inherit;
+    height: inherit;
+  }
+  
+  .logo-container {
+    position: relative;
+    display: block;
+  }
+  .logo-live {
+    position: absolute;
+    top: 50%;
+    width: 350px;
+    max-width: 350px !important;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 10;
+    opacity: 1 !important;
+    object-fit: contain;
+    box-shadow: none !important;
+  }
+  .insideCutter {
+    width: 86%;
+    height: 86%;
+    background-image: url("../../assets/loader/black.svg");
+    background-size: contain;
+    position: absolute;
+    z-index: 2;
+    animation: rotate 6s linear infinite;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 15%,
+      rgba(0, 0, 0, 0.9) 30%,
+      rgba(0, 0, 0, 1) 50%
+    );
+  }
+  
+  .shadow-example {
+    position: absolute;
+    background-image: url("../../assets/loader/black.svg");
+    width: 85%;
+    height: 85%;
+    background-size: cover;
+    animation: rotate 6s linear infinite;
+  }
+  .chunks {
+    position: absolute;
+    z-index: 1;
+    width: 83%;
+    height: 83%;
+    background-image: url("../../assets/loader/smallItems.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: rotate_chunks 90s linear infinite;
+  }
+  .chunks2 {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    width: 80%;
+    height: 80%;
+    background-image: url("../../assets/loader/boldchunks.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .cut-wrapper {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .hiddenLoader {
+    display: none;
+  }
+
+  #GameLoader {
+    background-color: #000 !important;
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes rotate_chunks {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .circle-container {
+      width: 300px;
+      height: 300px;
+    }
+    .cut-wrapper {
+      width: 280px;
+      height: 280px;
+    }
+    .chunks {
+      top: 25px;
+      right: 25px;
+    }
+    .chunks2 {
+      top: 25px;
+      right: 25px;
+    }
+    .logo-live {
+      width: 200px !important;
+    }
+  }

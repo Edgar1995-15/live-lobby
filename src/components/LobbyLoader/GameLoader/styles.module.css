@@ -1,0 +1,111 @@
+.loaderBox {
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+  }
+  .loaderBackground {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: blur(4px);
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 200;
+    width: 90%;
+    margin: auto;
+  }
+  
+  .loaderColorWrapper {
+    width: 100%;
+    height: 80%;
+    background: radial-gradient(
+      112% 112% at 50% -43%,
+      rgba(13, 12, 15, 0) 54%,
+      hsl(180 27% 8% / 1) 100%
+    );
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 300;
+  }
+  .info {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 300;
+  }
+  .tableName {
+    font-size: 3vw;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Montserrat-SemiBold", sans-serif;
+  }
+  .limitsBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .limits {
+    font-size: 1.54vw;
+    color: #f9c700;
+    text-shadow: 0 0 3px #ff0000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Montserrat-SemiBold", sans-serif;
+    text-align: center;
+  }
+  .arrowReverse svg {
+    transform: rotate(180deg);
+  }
+  .line {
+    width: 60%;
+    height: 0.4rem;
+    background: #111;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    margin: 40px auto;
+  }
+  .lineChild {
+    animation: 1s linear 0s 1 normal both running setWidth;
+    width: auto;
+    height: 100%;
+    background: #fff;
+  }
+  
+  @media (max-height: 600px) {
+    .loaderBox::before {
+      background-size: cover;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .loaderBackground {
+      width: 100%;
+      background-size: 100% 45%;
+      filter: blur(2px);
+    }
+    .loaderColorWrapper {
+      height: 60%;
+      background: radial-gradient(
+          112% 112% at 50% -43%,
+          rgba(13, 12, 15, 1) 0%, /* Change transparency to 1 for fully opaque black */
+          hsl(180 27% 8% / 1) 100%
+      );
+    }
+  }
+  
+  @keyframes setWidth {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+    .headerIcon {
+        display: none;
+    }
+    .headerLogo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .headerLogo img {
+        max-width: 150px;
+    }
+}
