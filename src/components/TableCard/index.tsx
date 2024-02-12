@@ -15,7 +15,7 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen }) => {
     const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
     const [isVideoInViewport, setIsVideoInViewport] = useState<boolean>(false);
 
-    const videoRef = React.useRef(null);
+    const videoRef = useRef(null);
 
     useEffect(() => {
         const options = {
