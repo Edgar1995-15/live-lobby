@@ -5,6 +5,7 @@ import Header from "../Header";
 import { useSocket } from "../../services/socket/socketContext";
 import { ListenEventNames } from "../../utils/constants/eventNames";
 import LoaderVegas from "../LobbyLoader";
+import styles from "./styles.module.css";
 
 interface IPlayerInfo {
     balance: number;
@@ -35,7 +36,7 @@ const Main = () => {
             {isLoading ? (
                 <LoaderVegas />
             ) : (
-                <div className="w-full h-[100vh] main-bg overflow-auto pb-12">
+                <div className={`w-full h-[100vh] main-bg overflow-auto pb-12 ${styles.main}`}>
                     {!isGameOpen && <Header />}
                     <Content games={playerInfo?.availableGames} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} />
                     {!isGameOpen && <Footer balance={playerInfo?.balance || 0} currency={playerInfo?.currencyId || ''} />}

@@ -1,5 +1,6 @@
 import Icon from "../Icon";
 import { NumberFormat } from "../../utils/helper";
+import styles from "./styles.module.css";
 
 interface IFooter {
     balance: number;
@@ -9,7 +10,7 @@ interface IFooter {
 const Footer = ({ balance, currency }: IFooter) => {
     
     return (
-        <div className="absolute bottom-6 left-6">
+        <div className={`absolute bottom-6 left-6 ${styles.footer}`}>
             <div className="flex text-white gap-2">
                 <Icon name="icons/balance" className="w-10" />
                 <div className="flex flex-col">
