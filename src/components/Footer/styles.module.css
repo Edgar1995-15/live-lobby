@@ -1,5 +1,6 @@
 @media (max-width: 768px) {
     .footer {
         position: relative !important;
+        width: 90%;
     }
 }

@@ -101,7 +101,6 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
         setVideoLoaded(true);
     };
 
-    console.log(table)
 
     return (
         <>
@@ -137,7 +136,7 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
                 }
                 {showIframe && (
                     <div className={styles.iframewrapper} style={{backgroundImage: `url(${getImageSource(table.tableId)})`}}>
-                        <iframe src={table.gameUrl} className={`w-full h-full absolute inset-0 z-10 ${styles.iframe}`} title="Game" />
+                        <iframe src={`${table.gameUrl}&externalGame=false`} className={`w-full h-full absolute inset-0 z-10 ${styles.iframe}`} title="Game" />
                     </div>
                 )}
             </div>

@@ -5,13 +5,18 @@
   }
   .tabs div {
     gap: 10px;
-    align-items: center;
   }
   .tabs h3 {
     font-size: 14px;
   }
   .tabs img {
     max-width: 40px;
+  }
+  .contentWrapper {
+    min-height: 60% !important;
+  }
+  .gameList {
+    height: 6rem !important;
   }
 }
 

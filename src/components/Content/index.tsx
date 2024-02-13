@@ -57,26 +57,24 @@ const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen }) => {
 
   return (
     <div className={`w-3/4 m-auto mt-10 mb-28 min-h-[75%] ${styles.contentWrapper}`}>
-      {!isGameOpen && 
       <div className={`w-full flex justify-center ${styles.tabs}`}>
-        <div className={`flex gap-16 ml-4 ${styles.gameList}`}>
+        <div className={`flex gap-16 ml-4 h-28 ${styles.gameList}`}>
           {vipGames.map((game, index) => (
-            <div key={index} className='cursor-pointer flex flex-col justify-center items-center' onClick={() => handleGameClick(game)}>
+            <div key={index} className='cursor-pointer flex flex-col justify-center items-center relative' onClick={() => handleGameClick(game)}>
               <Icon name={`icons/${selectedGame?.label === game.label ? 'active' : ''}${game.label}`} />
               <h3 className={`uppercase text-center leading-5 mt-2 ${selectedGame?.label === game.label ? 'text-[rgba(223,202,91,1)]' : 'text-white'}`}>VIP <br /> ROOMS</h3>
-              {selectedGame?.label === game.label && <Icon name='icons/activeTab' />}
+              {selectedGame?.label === game.label && <Icon name='icons/activeTab' className='absolute bottom-0' />}
             </div>
           ))}
           {otherGames.map((game, index) => (
-            <div key={index} className='cursor-pointer flex flex-col justify-center items-center' onClick={() => handleGameClick(game)}>
+            <div key={index} className='cursor-pointer flex flex-col justify-center items-center relative' onClick={() => handleGameClick(game)}>
               <Icon name={`icons/${selectedGame?.label === game.label ? 'active' : ''}${game.label}`} />
               <h3 className={`uppercase text-center leading-5 mt-2 ${selectedGame?.label === game.label ? 'text-[rgba(223,202,91,1)]' : 'text-white'}`}>{getFormattedLabel(game.label)}</h3>
-              {selectedGame?.label === game.label && <Icon name='icons/activeTab' />}
+              {selectedGame?.label === game.label && <Icon name='icons/activeTab' className='absolute bottom-0' />}
             </div>
           ))}
         </div>
       </div>
-      }
       <div className={`flex gap-10 flex-wrap place-content-center mt-20 ${styles.cardWrapper}`}>
         {selectedGame && (
           <>

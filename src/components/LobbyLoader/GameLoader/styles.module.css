@@ -14,7 +14,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 200;
-    width: 90%;
+    width: 88vw;
     margin: auto;
   }
   
@@ -99,6 +99,12 @@
       );
     }
   }
+
+  /* @media (max-width: 768px) {
+    .loaderBackground {
+      width: 100% !important;
+    }
+  } */
   
   @keyframes setWidth {
     from {
