@@ -6,6 +6,7 @@ import { useSocket } from "../../services/socket/socketContext";
 import { ListenEventNames } from "../../utils/constants/eventNames";
 import LoaderVegas from "../LobbyLoader";
 import styles from "./styles.module.css";
+import RaiseError from "../ErrorComponent";
 
 interface IPlayerInfo {
     balance: number;
@@ -18,21 +19,32 @@ const Main = () => {
     const [playerInfo, setPlayerInfo] = useState<IPlayerInfo | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isGameOpen, setIsGameOpen] = useState<boolean>(false);
+    const [errorCode, setErrorCode] = useState<number | null>(null);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
+        if (playerInfo) {
             setIsLoading(false);
-        }, 1500);
+            // const timer = setTimeout(() => {
+            //     setIsLoading(false);
+            // }, 1500);
 
-        return () => clearTimeout(timer);
-    }, []);
+            // return () => clearTimeout(timer);
+        }
+    }, [playerInfo]);
 
     useEffect(() => {
         socket?.on(ListenEventNames.Player, (data) => setPlayerInfo(data));
     }, [playerInfo])
 
+    useEffect(() => {
+        socket?.on(ListenEventNames.RaiseError, (data) => setErrorCode(data?.errorCode))
+    }, [errorCode])
+
+    console.info(errorCode)
+
     return (
         <>
+            {errorCode && errorCode !== 3 && <RaiseError errorCode={errorCode} />}
             {isLoading ? (
                 <LoaderVegas />
             ) : (

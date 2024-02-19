@@ -87,11 +87,14 @@
   @media (max-width: 600px) {
     .loaderBackground {
       width: 100%;
-      background-size: 100% 45%;
+      background-size: 100% 35%;
       filter: blur(2px);
+      z-index: 3;
+      margin-top: 40px;
     }
     .loaderColorWrapper {
-      height: 60%;
+      height: 100%;
+      z-index: 1;
       background: radial-gradient(
           112% 112% at 50% -43%,
           rgba(13, 12, 15, 1) 0%, /* Change transparency to 1 for fully opaque black */

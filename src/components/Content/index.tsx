@@ -26,15 +26,15 @@ const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen }) => {
     const otherGames = filteredGames?.filter(game => !game.label.toLowerCase().includes('vip'));
     setVipGames(vipGames);
     setOtherGames(otherGames);
-
-    setSelectedGame(vipGames?.length > 0 ? vipGames[0] : otherGames[0]);
+    if(vipGames && otherGames) {
+      setSelectedGame(vipGames?.length > 0 ? vipGames[0] : otherGames[0]);
+    }
   }, [games]);
 
   const handleGameClick = (game: IGame) => {
     setSelectedGame(game);
   };
 
-  console.log(selectedGame)
 
   const getFormattedLabel = (label: string): JSX.Element => {
     switch (label) {
@@ -59,14 +59,14 @@ const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen }) => {
     <div className={`w-3/4 m-auto mt-10 mb-28 min-h-[75%] ${styles.contentWrapper}`}>
       <div className={`w-full flex justify-center ${styles.tabs}`}>
         <div className={`flex gap-16 ml-4 h-28 ${styles.gameList}`}>
-          {vipGames.map((game, index) => (
+          {vipGames?.map((game, index) => (
             <div key={index} className='cursor-pointer flex flex-col justify-center items-center relative' onClick={() => handleGameClick(game)}>
               <Icon name={`icons/${selectedGame?.label === game.label ? 'active' : ''}${game.label}`} />
               <h3 className={`uppercase text-center leading-5 mt-2 ${selectedGame?.label === game.label ? 'text-[rgba(223,202,91,1)]' : 'text-white'}`}>VIP <br /> ROOMS</h3>
               {selectedGame?.label === game.label && <Icon name='icons/activeTab' className='absolute bottom-0' />}
             </div>
           ))}
-          {otherGames.map((game, index) => (
+          {otherGames?.map((game, index) => (
             <div key={index} className='cursor-pointer flex flex-col justify-center items-center relative' onClick={() => handleGameClick(game)}>
               <Icon name={`icons/${selectedGame?.label === game.label ? 'active' : ''}${game.label}`} />
               <h3 className={`uppercase text-center leading-5 mt-2 ${selectedGame?.label === game.label ? 'text-[rgba(223,202,91,1)]' : 'text-white'}`}>{getFormattedLabel(game.label)}</h3>

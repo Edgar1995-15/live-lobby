@@ -101,7 +101,6 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
         setVideoLoaded(true);
     };
 
-console.log(table.tableId)
     return (
         <>
             {showIframe && <GameLoader table={table} />}
@@ -111,7 +110,7 @@ console.log(table.tableId)
                     <img src={getImageSource(table.tableId)} className={`w-full h-full object-fill rounded-2xl ${styles.tableImg} ${table.isOccupied ? 'blur-sm' : ''}`} />
                     <video
                         src={getVideoSource(table.tableId)}
-                        autoPlay={showVideo}
+                        autoPlay
                         muted
                         loop
                         playsInline
