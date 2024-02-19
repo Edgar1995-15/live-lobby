@@ -3,18 +3,21 @@ import { getImageSource, getVideoSource } from '../../utils/helper';
 import styles from "./styles.module.css";
 import Icon from '../Icon';
 import GameLoader from '../LobbyLoader/GameLoader';
+import RaiseError from '../ErrorComponent';
 
 interface IProps {
     table: ITable;
     setIsGameOpen?: React.Dispatch<React.SetStateAction<boolean>>;
     isGameOpen: boolean;
+    balance?: number | undefined;
 }
 
-const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
+const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen, balance }) => {
     const [showIframe, setShowIframe] = useState<boolean>(false);
     const [showVideo, setShowVideo] = useState<boolean>(false);
     const [videoLoaded, setVideoLoaded] = useState<boolean>(false);
     const [isVideoInViewport, setIsVideoInViewport] = useState<boolean>(false);
+    const [displayError, setDisplayError] = useState<boolean>(false);
 
     const videoRef = useRef(null);
 
@@ -64,9 +67,13 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
     };
 
     const handleTableClick = () => {
-        setShowIframe(true);
-        if (setIsGameOpen) {
-            setIsGameOpen(true);
+        if ((table.gameId === 5 && balance && table.minStake > balance) || (table.isOccupied)) {
+            setDisplayError(true);
+        } else {
+            setShowIframe(true);
+            if (setIsGameOpen) {
+                setIsGameOpen(true);
+            }
         }
     };
 
@@ -105,6 +112,7 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
         <>
             {showIframe && <GameLoader table={table} />}
             <div className={`w-[24vw] h-[12vw] cursor-pointer ${styles.tableCard}`} onClick={handleTableClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={videoRef}>
+                {displayError && table.gameId === 5 && <RaiseError errorCode={table.isOccupied ? 520 : 5} />}
                 {!isGameOpen && 
                 <div className='relative w-full h-full'>
                     <img src={getImageSource(table.tableId)} className={`w-full h-full object-fill rounded-2xl ${styles.tableImg} ${table.isOccupied ? 'blur-sm' : ''}`} />
@@ -134,8 +142,8 @@ const TableCard: React.FC<IProps> = ({ table, setIsGameOpen, isGameOpen }) => {
                 </div>
                 }
                 {showIframe && (
-                    <div className={styles.iframewrapper} style={{backgroundImage: `url(${getImageSource(table.tableId)})`}}>
-                        <iframe src={`${table.gameUrl}&externalGame=false`} className={`w-full h-full absolute inset-0 z-10 ${styles.iframe}`} title="Game" />
+                    <div className={styles.iframewrapper}>
+                        <iframe src={`${table.gameUrl}&externalGame=false`} className={`w-full h-full absolute inset-0 z-10 ${styles.iframe}`} title="Game" style={{backgroundImage: `url(${getImageSource(table.tableId)})`}} />
                     </div>
                 )}
             </div>

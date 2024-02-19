@@ -51,8 +51,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    background-size: cover;
+    
     overflow: hidden;
+  }
+  iframe {
+    background-size: contain;
   }
 }
 .iframewrapper {

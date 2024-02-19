@@ -13,9 +13,10 @@ interface IContent {
   games: IGame[];
   setIsGameOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   isGameOpen: boolean;
+  balance?: number;
 }
 
-const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen }) => {
+const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen, balance }) => {
   const [selectedGame, setSelectedGame] = useState<IGame | null>(null);
   const [vipGames, setVipGames] = useState<IGame[]>([]);
   const [otherGames, setOtherGames] = useState<IGame[]>([]);
@@ -81,7 +82,7 @@ const Content: React.FC<IContent> = ({ games, setIsGameOpen, isGameOpen }) => {
             {selectedGame.tables.map((table, index) => (
               <>
               {table.tableId !== 37 &&
-                <TableCard key={index} table={table} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} />
+                <TableCard key={index} table={table} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} balance={balance} />
               }
               </>
 

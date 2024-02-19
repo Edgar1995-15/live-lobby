@@ -24,11 +24,6 @@ const Main = () => {
     useEffect(() => {
         if (playerInfo) {
             setIsLoading(false);
-            // const timer = setTimeout(() => {
-            //     setIsLoading(false);
-            // }, 1500);
-
-            // return () => clearTimeout(timer);
         }
     }, [playerInfo]);
 
@@ -40,17 +35,27 @@ const Main = () => {
         socket?.on(ListenEventNames.RaiseError, (data) => setErrorCode(data?.errorCode))
     }, [errorCode])
 
-    console.info(errorCode)
+    const setLanguageFromQueryParams = () => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const langParam = queryParams.get('lang');
+        if (langParam) {
+            localStorage.setItem('language', langParam);
+        }
+    };
+
+    useEffect(() => {
+        setLanguageFromQueryParams();
+    }, []);
 
     return (
         <>
-            {errorCode && errorCode !== 3 && <RaiseError errorCode={errorCode} />}
+            {errorCode && <RaiseError errorCode={errorCode} />}
             {isLoading ? (
                 <LoaderVegas />
             ) : (
                 <div className={`w-full h-[100vh] main-bg overflow-auto pb-12 ${styles.main}`}>
                     <Header isGameOpen={isGameOpen} />
-                    <Content games={playerInfo?.availableGames} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} />
+                    <Content games={playerInfo?.availableGames} setIsGameOpen={setIsGameOpen} isGameOpen={isGameOpen} balance={playerInfo?.balance} />
                     {!isGameOpen && <Footer balance={playerInfo?.balance || 0} currency={playerInfo?.currencyId || ''} />}
                 </div>
             )}
